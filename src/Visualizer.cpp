@@ -94,7 +94,7 @@ struct Visualizer::Impl
         int linkIndex = 0;
         for (const auto& linkSolidShapes : linksSolidShapes)
         {
-            const iDynTree::Transform world_H_frame = linkPositions(linkIndex);
+            const iDynTree::Transform& world_H_frame = linkPositions(linkIndex);
             const std::string linkName = model.getLinkName(linkIndex);
 
             for (auto linkSolidShape : linkSolidShapes)
@@ -127,12 +127,13 @@ struct Visualizer::Impl
                 const iDynTree::Vector4 color = externalMesh->getMaterial().color();
                 material.set_color(color(0) * 255, color(1) * 255, color(2) * 255);
 
-                this->meshcat.set_object(viewerName, mesh, material);
-
                 const iDynTree::Transform transform
                     = (world_H_frame * linkSolidShape->getLink_H_geometry());
+
+                this->meshcat.set_object(viewerName, mesh, material);
                 this->meshcat.set_transform(viewerName, transform.asHomogeneousTransform());
             }
+
             linkIndex++;
         }
     }
