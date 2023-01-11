@@ -8,10 +8,8 @@
 #ifndef IDYNTREE_MESHCAT_CPP_VIEWER_H
 #define IDYNTREE_MESHCAT_CPP_VIEWER_H
 
-
 #include <iDynTree/Model/Model.h>
 #include <memory>
-
 
 namespace iDynTreeMeshcatCpp
 {
@@ -26,6 +24,7 @@ public:
                    const std::vector<uint8_t>& color);
 
     void join();
+
 private:
     class Impl;
     std::unique_ptr<Impl> m_pimpl;

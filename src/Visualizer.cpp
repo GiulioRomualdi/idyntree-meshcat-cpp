@@ -64,7 +64,6 @@ struct Visualizer::Impl
             return false;
         }
         const std::string_view format = meshPath.substr(pos + 1);
-
         return format == "dae" || format == "stl" || format == "obj";
     }
 
